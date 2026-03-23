@@ -1,0 +1,83 @@
+/* Additional styles that don't fit in style.css */
+
+/* Page Title */
+.page-title {
+    font-size: 32px;
+    margin: 30px 0;
+    color: #4c281c;
+}
+
+/* Entry Content */
+.entry-content {
+    line-height: 1.8;
+}
+
+.entry-content h2,
+.entry-content h3 {
+    margin: 20px 0 10px;
+    color: #4c281c;
+}
+
+.entry-content p {
+    margin-bottom: 15px;
+}
+
+.entry-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Pagination */
+.pagination {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.pagination .page-numbers {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background: #f1f1f1;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination .current {
+    background: #f97705;
+    color: #fff;
+}
+
+/* WooCommerce Pages */
+.woocommerce-page .page-title {
+    text-align: left;
+}
+
+/* Forms */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button,
+input[type="submit"] {
+    background: #4c281c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: #f97705;
+}
