@@ -1,0 +1,43 @@
+<?php
+/**
+ * Product card template
+ */
+global $product;
+
+// Ensure visibility
+if (empty($product) || !$product->is_visible()) {
+    return;
+}
+?>
+<div <?php wc_product_class('product-card', $product); ?>>
+    <div class="product-image">
+        <a href="<?php the_permalink(); ?>">
+            <?php echo woocommerce_get_product_thumbnail('medium'); ?>
+        </a>
+        <?php if ($product->is_on_sale()): ?>
+            <span class="sale-badge">-<?php echo wc_get_price_decimals(); ?>%</span>
+        <?php endif; ?>
+        <button class="wishlist-btn" data-product-id="<?php echo get_the_ID(); ?>">
+            ❤️
+        </button>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">
+            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+        </h3>
+        
+        <?php if ($product->get_average_rating()): ?>
+            <div class="product-rating">
+                <?php echo wc_get_rating_html($product->get_average_rating()); ?>
+            </div>
+        <?php endif; ?>
+        
+        <div class="product-price">
+            <?php echo $product->get_price_html(); ?>
+        </div>
+        
+        <button class="add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
+            В корзину
+        </button>
+    </div>
+</div>
