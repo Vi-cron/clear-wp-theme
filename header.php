@@ -32,12 +32,13 @@
             <!-- Header Right -->
             <div class="header-right">
                 <div class="phones">
+					<span class="icon icon-phone">📞</span>
                     <a href="tel:+71111111111">+7(1111) 11-11-11</a>
                     <a href="tel:+71111111111">+7(1111) 11-11-11</a>
                 </div>
                 
                 <a href="<?php echo home_url('/wishlist/'); ?>" class="wishlist-link">
-                    ❤️
+                    <span class="icon icon-heart">❤️</span>
                     <span class="wishlist-count">
                         <?php 
                         if (function_exists('get_wishlist_count')) {
@@ -50,7 +51,7 @@
                 </a>
                 
                 <a href="<?php echo wc_get_cart_url(); ?>" class="cart-link">
-                    🛒
+                    <span class="icon icon-cart">🛒</span>
                     <span class="cart-count">
                         <?php 
                         if (function_exists('WC') && WC()->cart) {

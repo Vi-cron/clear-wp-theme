@@ -15,10 +15,10 @@ if (empty($product) || !$product->is_visible()) {
             <?php echo woocommerce_get_product_thumbnail('medium'); ?>
         </a>
         <?php if ($product->is_on_sale()): ?>
-            <span class="sale-badge">-<?php echo wc_get_price_decimals(); ?>%</span>
+            <span class="sale-badge"><?php echo esc_html__('Sale', 'wc-theme'); ?></span>
         <?php endif; ?>
         <button class="wishlist-btn" data-product-id="<?php echo get_the_ID(); ?>">
-            ❤️
+            <span class="icon icon-heart">❤️</span>
         </button>
     </div>
     <div class="product-info">
@@ -36,8 +36,14 @@ if (empty($product) || !$product->is_visible()) {
             <?php echo $product->get_price_html(); ?>
         </div>
         
-        <button class="add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
-            В корзину
-        </button>
     </div>
+	<div class="product-info-buttons">
+		<a class="product-info-button" href="<?php the_permalink(); ?>">
+            <?php echo esc_html__('Подробнее', 'wc-theme'); ?>
+		</a>
+		<button class="product-info-button add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
+            <?php echo esc_html__('В корзину', 'wc-theme'); ?>
+			<span class="icon icon-cart">🛒</span>
+		</button>
+	</div>
 </div>

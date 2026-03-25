@@ -116,7 +116,15 @@ body {
 }
 
 .phones {
-    text-align: right;
+	position:relative;
+	padding-left:45px;
+}
+
+.phones .icon-phone{
+	position:absolute;
+	left:0px;
+	top:5px;
+	background-color:#f97705;
 }
 
 .phones a {
@@ -322,6 +330,7 @@ body {
     margin-bottom: 60px;
 }
 
+/* Product Card */
 .product-card {
     background: #fff;
     border: 1px solid #eee;
@@ -329,12 +338,14 @@ body {
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+	padding-bottom:50px;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
+
 
 .product-image {
     position: relative;
@@ -353,17 +364,15 @@ body {
 
 .wishlist-btn {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
     background: #fff;
     border: none;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     font-size: 18px;
     transition: all 0.3s ease;
     z-index: 2;
@@ -374,18 +383,31 @@ body {
     color: #fff;
 }
 
+.wishlist-btn .icon-heart{
+	background:#323232;
+	display:inline-block;
+	position:absolute;
+	left:4px;
+	top:5px;
+}
+
 .product-info {
     padding: 20px;
 }
 
 .product-title {
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .product-title a {
-    color: #333;
-    text-decoration: none;
+	color: #333;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
 }
 
 .product-title a:hover {
@@ -399,19 +421,47 @@ body {
     margin-bottom: 15px;
 }
 
-.add-to-cart-btn {
-    width: 100%;
-    background: #4c281c;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+.product-info-buttons {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
 }
 
+.product-info-button {
+	display: inline-block;
+	background: #f0f0f0;
+	color: #323232;
+	border: none;
+	padding: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+	font-size: 14px;
+	text-decoration: none;
+	width: 49%;
+	text-align: center;
+	padding:12px 10px;
+}
+
+.add-to-cart-btn {
+	position: relative;
+	text-align: left;
+	padding: 15px 30px 15px 15px;
+	border: 0px;
+}
+
+.product-info-button:hover,
 .add-to-cart-btn:hover {
     background: #f97705;
+}
+
+.add-to-cart-btn .icon-cart {
+	background: #323232;
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	right: 7px;
+	top: 7px;
 }
 
 /* About Section */

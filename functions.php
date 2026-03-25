@@ -32,17 +32,33 @@ function wc_theme_scripts() {
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0');
     wp_enqueue_style('wc-theme-style', get_stylesheet_uri(), array(), '1.0.0');
     wp_enqueue_style('wc-theme-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
-	wp_enqueue_style('wc-theme-shop-layout', get_template_directory_uri() . '/assets/css/shop-layout.css', array(), '1.0.0');
+	wp_enqueue_style('wc-theme-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), '1.0.0');
+    
+    // Shop layout CSS (добавляем только на страницах каталога)
+    if (is_shop() || is_product_category() || is_product_tag()) {
+        wp_enqueue_style('wc-theme-shop-css', get_template_directory_uri() . '/assets/css/shop-layout.css', array(), '1.0.0');
+    }
     
     // Scripts
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true);
     wp_enqueue_script('wc-theme-main', get_template_directory_uri() . '/assets/js/main.js', array('swiper-js'), '1.0.0', true);
     
-    // Localize script for AJAX
+    // Локализация для основного скрипта
     wp_localize_script('wc-theme-main', 'wc_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('wc_ajax_nonce'),
     ));
+    
+    // Shop AJAX script (добавляем только на страницах каталога)
+    if (is_shop() || is_product_category() || is_product_tag()) {
+        wp_enqueue_script('wc-theme-shop-js', get_template_directory_uri() . '/assets/js/shop-ajax.js', array('jquery'), '1.0.0', true);
+        
+        // Локализация для shop скрипта
+        wp_localize_script('wc-theme-shop-js', 'my_ajax', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('wc_ajax_nonce') // Добавлен nonce
+        ));
+    }
 }
 add_action('wp_enqueue_scripts', 'wc_theme_scripts');
 
@@ -110,3 +126,4 @@ require_once get_template_directory() . '/inc/clear.php';
 require_once get_template_directory() . '/inc/categories.php';
 require_once get_template_directory() . '/inc/theme-options.php';
 require_once get_template_directory() . '/inc/woocommerce-filters.php';
+require_once get_template_directory() . '/inc/woocommerce-ajax_products_load.php';
