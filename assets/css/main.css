@@ -66,8 +66,10 @@ select {
     font-size: 16px;
 }
 
+.wc-block-components-button,
 button,
 input[type="submit"] {
+	text-decoration:none;
     background: #4c281c;
     color: #fff;
     border: none;
@@ -80,4 +82,14 @@ input[type="submit"] {
 button:hover,
 input[type="submit"]:hover {
     background: #f97705;
+}
+
+
+.wc-block-components-product-name{
+	color:#323232;
+}
+
+.wc-block-components-address-form-wrapper .is-active input,
+.wc-block-components-button:focus{
+	box-shadow:0 0 0 2px #f97705!important;
 }

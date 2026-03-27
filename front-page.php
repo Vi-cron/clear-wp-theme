@@ -56,30 +56,8 @@
             
             if ($featured_products->have_posts()):
                 while ($featured_products->have_posts()): $featured_products->the_post();
-                    global $product;
-                    ?>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php echo woocommerce_get_product_thumbnail(); ?>
-                            </a>
-                            <button class="wishlist-btn" data-product-id="<?php echo get_the_ID(); ?>">
-                                ❤️
-                            </button>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-                            <div class="product-price">
-                                <?php echo $product->get_price_html(); ?>
-                            </div>
-                            <button class="add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
-                                В корзину
-                            </button>
-                        </div>
-                    </div>
-                    <?php
+                    // Используем стандартный шаблон WooCommerce для вывода карточки товара
+                    wc_get_template_part('content', 'product');
                 endwhile;
                 wp_reset_postdata();
             endif;

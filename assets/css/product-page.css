@@ -1,0 +1,973 @@
+/**
+ * Product Page Styles
+ * Исправленная версия с Flexbox для стабильной работы Swiper
+ */
+
+/* ============================================
+   Основные стили страницы товара
+   ============================================ */
+.single-product-container {
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+
+.single-product-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   Основная информация о товаре (Flex)
+   ============================================ */
+.product-main-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.product-gallery {
+    position: sticky;
+    top: 20px;
+    width: calc(50% - 25px);
+    flex-shrink: 0;
+}
+
+.product-summary {
+    width: calc(50% - 25px);
+    flex-shrink: 0;
+}
+
+/* ============================================
+   Галерея товара (Swiper)
+   ============================================ */
+.product-gallery-main {
+    position: relative;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.product-gallery-main-swiper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.product-gallery-main-swiper .swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.product-gallery-main-swiper .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    cursor: pointer;
+}
+
+.product-gallery-main-swiper .swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Навигация Swiper */
+.product-gallery-main-swiper .swiper-button-next,
+.product-gallery-main-swiper .swiper-button-prev {
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.product-gallery-main-swiper .swiper-button-next:hover,
+.product-gallery-main-swiper .swiper-button-prev:hover {
+    background: #f97705;
+}
+
+.product-gallery-main-swiper .swiper-button-next:after,
+.product-gallery-main-swiper .swiper-button-prev:after {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Слайдер миниатюр */
+.product-gallery-thumbs {
+    margin-top: 15px;
+}
+
+.product-gallery-thumbs-swiper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.product-gallery-thumbs-swiper .swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.product-gallery-thumbs-swiper .swiper-slide {
+    flex-shrink: 0;
+    width: calc(25% - 8px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.product-gallery-thumbs-swiper .swiper-slide-thumb-active 
+{
+    opacity: 1;
+    border-color: #f97705;
+}
+
+.product-gallery-thumbs-swiper .swiper-slide:hover {
+    opacity: 1;
+}
+
+.product-gallery-thumbs-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Адаптив для миниатюр */
+@media (min-width: 768px) {
+    .product-gallery-thumbs-swiper .swiper-slide {
+        width: calc(25% - 8px);
+    }
+}
+
+@media (max-width: 767px) {
+    .product-gallery-thumbs-swiper .swiper-slide {
+        width: calc(33.33% - 8px);
+    }
+}
+
+/* Заглушка для отсутствия изображений */
+.product-gallery-placeholder {
+    background: #f9f9f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.product-gallery-placeholder img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================
+   Информация о товаре (правая колонка)
+   ============================================ */
+.product-title-single {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #4c281c;
+    line-height: 1.3;
+}
+
+/* Рейтинг */
+.product-rating-single {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.product-rating-single .star-rating {
+    margin: 0;
+    font-size: 14px;
+}
+
+.rating-count {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Цена */
+.product-price-single {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f97705;
+    margin-bottom: 20px;
+}
+
+/* Краткое описание */
+.product-short-description {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+/* ============================================
+   Вариации товара
+   ============================================ */
+.product-variations {
+    margin-bottom: 25px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.variations {
+    margin-bottom: 20px;
+}
+
+.variation-item {
+    margin-bottom: 20px;
+}
+
+.variation-item label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.variation-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.variation-option {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.variation-option input {
+    display: none;
+}
+
+.variation-label {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.variation-option.selected .variation-label,
+.variation-option input:checked + .variation-label {
+    background: #f97705;
+    color: #fff;
+    border-color: #f97705;
+}
+
+.variation-option:hover .variation-label {
+    background: #e0e0e0;
+}
+
+/* Результат выбора вариации */
+.single_variation_wrap {
+    margin-top: 20px;
+}
+
+.woocommerce-variation-price {
+    margin-bottom: 15px;
+}
+
+.woocommerce-variation-price .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f97705;
+}
+
+.woocommerce-variation-availability .stock {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.woocommerce-variation-availability .in-stock {
+    color: #4caf50;
+    background: #e8f5e9;
+}
+
+.woocommerce-variation-availability .out-of-stock {
+    color: #f44336;
+    background: #ffebee;
+}
+
+.woocommerce-variation-unavailable {
+    color: #f44336;
+    padding: 10px;
+    background: #ffebee;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* ============================================
+   Форма добавления в корзину
+   ============================================ */
+.product-cart-form {
+    margin-bottom: 25px;
+}
+
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.quantity-wrapper label {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.quantity {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.quantity button {
+    width: 40px;
+    height: 45px;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.quantity button:hover {
+    background: #f97705;
+    color: #fff;
+}
+
+.quantity input {
+    width: 60px;
+    height: 45px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+    background: #fff;
+}
+
+.quantity input:focus {
+    outline: none;
+}
+
+.quantity-plus{
+	text-indent:-7px;
+}
+
+/* Контейнер для кнопок в строку */
+.cart-buttons-row {
+    display: flex;
+    gap: 15px;
+    align-items: stretch;
+    margin-top: 10px;
+}
+
+/* Кнопка добавления в корзину */
+.single-add-to-cart-btn {
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #f97705;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    flex: 1;
+}
+
+.single-add-to-cart-btn:hover {
+    background: #e86c04;
+}
+
+.single-add-to-cart-btn .icon {
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.single-add-to-cart-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Сообщение о отсутствии товара */
+.out-of-stock-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ============================================
+   Мета информация
+   ============================================ */
+.product-meta {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.product-meta > div {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.product-meta > div:last-child {
+    margin-bottom: 0;
+}
+
+.product-meta strong {
+    min-width: 80px;
+    display: inline-block;
+    color: #333;
+}
+
+.product-meta a {
+    color: #f97705;
+    text-decoration: none;
+}
+
+.product-meta a:hover {
+    text-decoration: underline;
+}
+
+/* Кнопка избранного */
+.single-wishlist-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: none;
+    border: 1px solid #ddd;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    width: 100%;
+    color: #333;
+}
+
+.single-wishlist-btn:hover {
+    background: #f97705;
+    color: #fff;
+    border-color: #f97705;
+}
+
+.single-wishlist-btn:hover .icon {
+    background-color: #fff;
+}
+
+.single-wishlist-btn.active {
+    background: #f97705;
+    color: #fff;
+    border-color: #f97705;
+}
+
+/* ============================================
+   Табы (Описание, Характеристики, Отзывы)
+   ============================================ */
+.product-tabs {
+    margin-bottom: 60px;
+}
+
+.tabs-header {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #f97705;
+}
+
+.tab-btn:hover {
+    color: #323232;
+	border-radius:5px 5px 0px 0px;
+	background: #f97705;
+}
+
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #f97705;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Описание товара */
+.product-description {
+    line-height: 1.8;
+    color: #555;
+}
+
+.product-description h2,
+.product-description h3,
+.product-description h4 {
+    margin: 25px 0 15px;
+    color: #4c281c;
+}
+
+.product-description h2 {
+    font-size: 24px;
+}
+
+.product-description h3 {
+    font-size: 20px;
+}
+
+.product-description p {
+    margin-bottom: 15px;
+}
+
+.product-description ul,
+.product-description ol {
+    margin: 15px 0 15px 25px;
+}
+
+.product-description img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Таблица характеристик */
+.product-attributes {
+    overflow-x: auto;
+}
+
+.product-attributes-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.product-attributes-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.product-attributes-table th,
+.product-attributes-table td {
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.product-attributes-table th {
+    width: 30%;
+    font-weight: bold;
+    background: #f9f9f9;
+    color: #333;
+}
+
+.product-attributes-table td {
+    color: #555;
+}
+
+/* Отзывы */
+.product-reviews {
+    max-width: 800px;
+}
+
+#reviews {
+    margin-top: 0;
+}
+
+#comments {
+    margin-bottom: 30px;
+}
+
+.commentlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.comment-meta {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.comment-text {
+    line-height: 1.6;
+}
+
+/* ============================================
+   Похожие товары (Swiper)
+   ============================================ */
+.related-products {
+    margin-bottom: 60px;
+}
+
+.related-products .section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #4c281c;
+}
+
+.related-products-slider {
+    position: relative;
+    padding: 0 55px;
+}
+
+.related-products-swiper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.related-products-swiper .swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.related-products-swiper .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+}
+
+/* Навигация для похожих товаров */
+.related-products-swiper .swiper-button-next,
+.related-products-swiper .swiper-button-prev {
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.related-products-swiper .swiper-button-next:hover,
+.related-products-swiper .swiper-button-prev:hover {
+    background: #f97705;
+}
+
+.related-products-swiper .swiper-button-next:after,
+.related-products-swiper .swiper-button-prev:after {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Пагинация для похожих товаров */
+.related-products-swiper .swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+}
+
+.related-products-swiper .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #ddd;
+    opacity: 1;
+}
+
+.related-products-swiper .swiper-pagination-bullet-active {
+    background: #f97705;
+}
+
+/* Карточка товара в слайдере */
+.related-products-swiper .product-card {
+    margin: 0px;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.related-products-swiper .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Кнопка возврата в каталог
+   ============================================ */
+.back-to-shop {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #4c281c;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    font-size: 16px;
+}
+
+.back-btn:hover {
+    background: #f97705;
+    color: #fff;
+}
+
+.back-btn .icon {
+    font-size: 18px;
+}
+
+/* ============================================
+   Адаптивность
+   ============================================ */
+@media (max-width: 992px) {
+    .product-main-info {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .product-gallery,
+    .product-summary {
+        width: 100%;
+    }
+    
+    .product-gallery {
+        position: static;
+    }
+    
+    .tabs-header {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .related-products-slider {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-product-container {
+        padding: 20px 15px;
+    }
+    
+    .product-title-single {
+        font-size: 24px;
+    }
+    
+    .product-price-single {
+        font-size: 22px;
+    }
+    
+    .product-gallery-main-swiper .swiper-slide {
+        min-height: 300px;
+    }
+    
+    .product-gallery-main-swiper .swiper-slide img {
+        max-height: 350px;
+    }
+    
+    .variation-values {
+        gap: 8px;
+    }
+    
+    .variation-label {
+        padding: 6px 15px;
+        font-size: 13px;
+    }
+    
+    .quantity button {
+        width: 35px;
+        height: 40px;
+    }
+    
+    .quantity input {
+        width: 50px;
+        height: 40px;
+    }
+    
+    .single-add-to-cart-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .related-products-swiper .swiper-button-next,
+    .related-products-swiper .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .related-products-swiper .swiper-button-next:after,
+    .related-products-swiper .swiper-button-prev:after {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .variation-values {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .variation-label {
+        display: block;
+        text-align: center;
+    }
+    
+    .product-attributes-table th,
+    .product-attributes-table td {
+        display: block;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .product-attributes-table th {
+        background: #f5f5f5;
+    }
+    
+    .product-attributes-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+    }
+    
+    .related-products-slider {
+        padding: 0 10px;
+    }
+    
+    .back-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ============================================
+   Утилиты и вспомогательные стили
+   ============================================ */
+/* Скрытие элементов */
+.hidden {
+    display: none !important;
+}
+
+/* Очистка float */
+.clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* Для корректной работы Swiper */
+.swiper-container {
+    overflow: hidden;
+}
+
+/* Анимации */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
