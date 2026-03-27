@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             primaryMenu.classList.toggle('active');
         });
     }
-    
+    /*
     // AJAX Add to Cart
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
     
@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
+    */
+	
     // Wishlist functionality (if TI WooCommerce Wishlist is active)
     const wishlistButtons = document.querySelectorAll('.wishlist-btn');
     

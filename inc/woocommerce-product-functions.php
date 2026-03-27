@@ -232,7 +232,7 @@ function wc_theme_cart_buttons($product) {
     </div>
 
     <div class="cart-buttons-row">
-        <button type="submit" class="single-add-to-cart-btn">
+        <button type="submit" class="add-to-cart-btn single-add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
             <span class="icon icon-cart">🛒</span>
             Добавить в корзину
         </button>

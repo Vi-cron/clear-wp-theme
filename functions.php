@@ -33,6 +33,7 @@ function wc_theme_scripts() {
     wp_enqueue_style('wc-theme-style', get_stylesheet_uri(), array(), '1.0.0');
     wp_enqueue_style('wc-theme-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
 	wp_enqueue_style('wc-theme-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), '1.0.0');
+	wp_enqueue_style('wc-theme-mini-cart', get_template_directory_uri() . '/assets/css/mini-cart.css', array(), '1.0.0');
     
     // Shop layout CSS (добавляем только на страницах каталога)
     if (is_shop() || is_product_category() || is_product_tag()) {
@@ -46,6 +47,7 @@ function wc_theme_scripts() {
     // Scripts
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true);
     wp_enqueue_script('wc-theme-main', get_template_directory_uri() . '/assets/js/main.js', array('swiper-js'), '1.0.0', true);
+	wp_enqueue_script('wc-theme-mini-cart', get_template_directory_uri() . '/assets/js/mini-cart.js', array('swiper-js'), '1.0.0', true);
     
     // Локализация для основного скрипта
     wp_localize_script('wc-theme-main', 'wc_ajax', array(
@@ -60,7 +62,7 @@ function wc_theme_scripts() {
         // Локализация для shop скрипта
         wp_localize_script('wc-theme-shop-js', 'my_ajax', array(
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('wc_ajax_nonce') // Добавлен nonce
+            'nonce' => wp_create_nonce('wc_ajax_nonce') 
         ));
     }
 }
@@ -96,30 +98,6 @@ add_filter('body_class', 'wc_theme_body_classes');
 // Remove WooCommerce default styles
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
-// Add AJAX add to cart support
-function wc_theme_ajax_add_to_cart() {
-    ?>
-    <script type="text/javascript">
-    jQuery(function($) {
-        $('body').on('added_to_cart', function() {
-            $.ajax({
-                url: wc_ajax.ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'update_cart_count',
-                    nonce: wc_ajax.nonce
-                },
-                success: function(response) {
-                    $('.cart-count').text(response);
-                }
-            });
-        });
-    });
-    </script>
-    <?php
-}
-add_action('wp_footer', 'wc_theme_ajax_add_to_cart');
-
 // Custom excerpt length
 function wc_theme_excerpt_length($length) {
     return 20;
@@ -132,3 +110,4 @@ require_once get_template_directory() . '/inc/theme-options.php';
 require_once get_template_directory() . '/inc/woocommerce-filters.php';
 require_once get_template_directory() . '/inc/woocommerce-ajax_products_load.php';
 require_once get_template_directory() . '/inc/woocommerce-product-functions.php';
+require_once get_template_directory() . '/inc/woocommerce-mini-cart.php';
