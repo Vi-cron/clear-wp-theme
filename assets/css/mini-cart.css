@@ -1,24 +1,20 @@
 /**
- * Add to Cart Button Styles
+ * Add to Cart Button Styles - Updated
  */
 
 /* Кнопка добавления в корзину */
-
-.product-info-buttons form.cart{
-	display:inline-block;
-	width:49%;
-}
-.product-info-buttons form.cart > .add-to-cart-btn{
-	width:100%;
+.add-to-cart-btn {
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-flex;
 }
 
-.add-to-cart-btn.loading {
-    pointer-events: none;
-    opacity: 0.8;
-	padding-right:0px;
-	background-color:#a2a2a2;
+/* Стили для текста кнопки */
+.add-to-cart-btn .btn-text {
+    display: inline-block;
 }
 
+/* Спиннер загрузки */
 .loading-spinner-btn {
     display: inline-block;
     width: 18px;
@@ -27,45 +23,110 @@
     border-top-color: #fff;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
-    vertical-align: middle;
-    margin-right: 8px;
+    flex-shrink: 0;
 }
 
+/* Галочка успеха (справа) */
 .added-checkmark {
-    display: inline-block;
-    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #4caf50;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
     font-weight: bold;
-    margin-right: 6px;
     animation: checkmarkPop 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Состояния кнопки */
+.add-to-cart-btn.loading {
+    pointer-events: none;
+    opacity: 0.9;
+    background-color:#a2a2a2;
 }
 
 .add-to-cart-btn.added {
     background: #4caf50 !important;
 }
 
+/* Стили для загрузки мини-корзины */
+.mini-cart.loading {
+    opacity: 0.9;
+}
+
+.mini-cart-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 12px;
+}
+
+.mini-cart-loading .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #f3f3f3;
+    border-top-color: #f97705;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.mini-cart-loading span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Индикатор загрузки на иконке корзины */
+.cart-link.loading-mini-cart {
+    position: relative;
+}
+
+.cart-link.loading-mini-cart .icon-cart {
+    opacity: 0.7;
+}
+
+.cart-link.loading-mini-cart::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top-color: #f97705;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+/* Анимации */
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
 @keyframes checkmarkPop {
     0% { transform: scale(0); opacity: 0; }
-    80% { transform: scale(1.2); }
+    50% { transform: scale(1.2); }
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Уведомления */
+/* ============================================
+   Уведомления
+   ============================================ */
 .wc-notification {
     position: fixed;
     bottom: 30px;
     right: 30px;
     z-index: 9999;
-    min-width: 300px;
-    max-width: 400px;
+    min-width: 320px;
+    max-width: 420px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
     transform: translateX(120%);
     transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -103,6 +164,7 @@
     justify-content: center;
     font-size: 14px;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 .wc-notification-success .wc-notification-icon {
@@ -115,15 +177,43 @@
     color: #fff;
 }
 
+.wc-notification-info .wc-notification-icon {
+    background: #2196f3;
+    color: #fff;
+}
+
 .wc-notification-message {
     flex: 1;
     font-size: 14px;
     color: #333;
+    line-height: 1.4;
+}
+
+.wc-notification-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.wc-notification-close:hover {
+    background: #f5f5f5;
+    color: #666;
 }
 
 .wc-notification-cart-btn {
     display: block;
-    background: #f5f5f5;
+    background: #f8f8f8;
     text-align: center;
     padding: 12px 20px;
     text-decoration: none;
@@ -131,7 +221,7 @@
     font-weight: 500;
     font-size: 14px;
     border-top: 1px solid #eee;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .wc-notification-cart-btn:hover {
@@ -139,7 +229,9 @@
     color: #fff;
 }
 
-/* Мини корзина */
+/* ============================================
+   Мини корзина
+   ============================================ */
 .mini-cart {
     position: absolute;
     width: 380px;
@@ -344,10 +436,90 @@
     color: #fff;
 }
 
-/* Позиционирование корзины */
-.cart-link {
+
+/* Кнопка закрытия мини-корзины */
+.mini-cart-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.mini-cart-close:hover {
+    background: #f5f5f5;
+    color: #666;
+}
+
+/* Убираем индикатор загрузки с иконки корзины */
+.cart-link.loading-mini-cart {
     position: relative;
 }
+
+.cart-link.loading-mini-cart::after {
+    display: none;
+}
+
+/* Стили для загрузки внутри мини-корзины */
+.mini-cart.loading {
+    opacity: 1;
+}
+
+.mini-cart-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 12px;
+}
+
+.mini-cart-loading .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #f3f3f3;
+    border-top-color: #f97705;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.mini-cart-loading span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Кнопка очистки корзины */
+.mini-cart-clear {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.mini-cart-clear:hover:not(:disabled) {
+    color: #f44336;
+    background: #fff5f5;
+}
+
+.mini-cart-clear:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Адаптивность */
 
 /* Адаптивность */
 @media (max-width: 768px) {
@@ -379,3 +551,8 @@
         max-height: 50vh;
     }
 }
+
+    
+    
+    
+    
