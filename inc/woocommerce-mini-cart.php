@@ -156,7 +156,7 @@ class WC_Theme_Mini_Cart {
             'items' => $items,
             'count' => $cart->get_cart_contents_count(),
             'total' => $cart->get_total('edit'),
-            'total_html' => wc_price($cart->get_total()),
+            'total_html' => wc_price($cart->get_total('edit')),
         ));
     }
     

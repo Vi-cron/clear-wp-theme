@@ -362,33 +362,47 @@ body {
     object-fit: contain;
 }
 
-.wishlist-btn {
+.top-buttons{
     position: absolute;
     top: 10px;
     right: 15px;
+    z-index: 2;
+}
+
+.comparison-btn,
+.wishlist-btn {
     background: #fff;
     border: none;
     width: 45px;
     height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    display: block;
+    display: inline-block;
     font-size: 18px;
     transition: all 0.3s ease;
-    z-index: 2;
+    position: relative;
 }
 
+.comparison-btn:hover,
 .wishlist-btn:hover {
     background: #f97705;
     color: #fff;
 }
 
+.comparison-btn .icon-comparison,
 .wishlist-btn .icon-heart{
 	background:#323232;
 	display:inline-block;
 	position:absolute;
 	left:4px;
 	top:5px;
+}
+
+.comparison-btn .icon-comparison{
+    width: 30px;
+    height: 30px;
+    left:10px;
+	top:8px;
 }
 
 .product-info {
@@ -449,9 +463,13 @@ body {
 	transition: background 0.3s ease;
 	font-size: 14px;
 	text-decoration: none;
-	width: 49%;
+	width: 45%;
 	text-align: center;
 	padding:12px 10px;
+}
+
+.product-info-buttons .add-to-cart-btn{
+    width: 53%;
 }
 
 .add-to-cart-btn {
@@ -473,7 +491,7 @@ body {
 	height: 35px;
 	position: absolute;
 	right: 7px;
-	top: 7px;
+	top: 6px;
 }
 
 /* About Section */

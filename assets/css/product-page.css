@@ -396,19 +396,19 @@
 /* Кнопка добавления в корзину */
 .single-add-to-cart-btn {
 	display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: #f97705;
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    flex: 1;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background: #f97705;
+	color: #fff;
+	border: none;
+	padding: 15px 55px 15px 20px;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background 0.3s ease;
+	flex: 1;
 }
 
 .single-add-to-cart-btn:hover {
@@ -420,6 +420,8 @@
     width: 40px;
     height: 40px;
     display: inline-block;
+    top:11px;
+    right: 10px;
 }
 
 .single-add-to-cart-btn:disabled {
@@ -701,7 +703,7 @@
 
 .related-products-slider {
     position: relative;
-    padding: 0 55px;
+    padding: 0 50px;
 }
 
 .related-products-swiper {

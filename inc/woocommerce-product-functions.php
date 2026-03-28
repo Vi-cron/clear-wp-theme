@@ -218,7 +218,7 @@ function wc_theme_simple_add_to_cart_form($product) {
 }
 
 /**
- * Блок кнопок корзины и избранного (общий для всех типов товаров)
+ * Блок кнопок корзины, избранного, сравнения (общий для всех типов товаров)
  */
 function wc_theme_cart_buttons($product) {
     ?>
@@ -240,6 +240,11 @@ function wc_theme_cart_buttons($product) {
         <button type="button" class="single-wishlist-btn-icon" data-product-id="<?php echo $product->get_id(); ?>">
             <span class="icon icon-heart">❤</span>
         </button>
+
+        <button type="button" class="single-comparison-btn-icon" data-product-id="<?php echo $product->get_id(); ?>">
+            <span class="icon icon-comparison">⇄</span>
+        </button>
+        
     </div>
     <?php
 }

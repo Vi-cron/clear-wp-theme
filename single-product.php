@@ -85,12 +85,14 @@ if (!$product || !is_object($product) || !$product->is_visible()) {
                         <strong>Категории:</strong>
                         <?php echo wc_get_product_category_list($product->get_id(), ', '); ?>
                     </div>
-                    <?php if ($product->get_tags()): ?>
-                    <div class="product-tags">
-                        <strong>Теги:</strong>
-                        <?php echo wc_get_product_tag_list($product->get_id(), ', '); ?>
-                    </div>
-                    <?php endif; ?>
+					<?php
+					$tag_list = wc_get_product_tag_list($product->get_id(), ', ');
+					if ($tag_list): ?>
+					<div class="product-tags">
+						<strong>Теги:</strong>
+						<?php echo $tag_list; ?>
+					</div>
+					<?php endif; ?>
                 </div>
             </div>
         </div>

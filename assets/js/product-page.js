@@ -79,7 +79,7 @@
         }
         
         // Lightbox для изображений (если Fancybox загружен)
-        //initLightbox();
+        initLightbox();
     }
     
     /**
@@ -315,7 +315,7 @@
         
         new Swiper('.related-products-swiper', {
             slidesPerView: 1,
-            spaceBetween: 10,
+            spaceBetween: 5,
             navigation: {
                 nextEl: '.related-products-swiper .swiper-button-next',
                 prevEl: '.related-products-swiper .swiper-button-prev',
@@ -326,8 +326,8 @@
             },
             breakpoints: {
                 480: { slidesPerView: 2, spaceBetween: 10 },
-                768: { slidesPerView: 3, spaceBetween: 15 },
-                992: { slidesPerView: 4, spaceBetween: 20 }
+                768: { slidesPerView: 3, spaceBetween: 10 },
+                992: { slidesPerView: 4, spaceBetween: 10 }
             },
             loop: slides.length > 4,
             autoplay: false

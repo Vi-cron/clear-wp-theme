@@ -17,9 +17,14 @@ if (empty($product) || !$product->is_visible()) {
         <?php if ($product->is_on_sale()): ?>
             <span class="sale-badge"><?php echo esc_html__('Sale', 'woocommerce'); ?></span>
         <?php endif; ?>
+        <div class="top-buttons">
+        <button class="comparison-btn" data-product-id="<?php echo get_the_ID(); ?>">
+            <span class="icon icon-comparison">⇄</span>
+        </button>
         <button class="wishlist-btn" data-product-id="<?php echo get_the_ID(); ?>">
             <span class="icon icon-heart">❤️</span>
         </button>
+        </div>
     </div>
     <div class="product-info">
         <h3 class="product-title">

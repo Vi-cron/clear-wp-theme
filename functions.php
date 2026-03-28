@@ -32,38 +32,33 @@ function wc_theme_scripts() {
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0');
     wp_enqueue_style('wc-theme-style', get_stylesheet_uri(), array(), '1.0.0');
     wp_enqueue_style('wc-theme-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
-	wp_enqueue_style('wc-theme-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), '1.0.0');
-	wp_enqueue_style('wc-theme-mini-cart', get_template_directory_uri() . '/assets/css/mini-cart.css', array(), '1.0.0');
+    wp_enqueue_style('wc-theme-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), '1.0.0');
     
-    // Shop layout CSS (добавляем только на страницах каталога)
+    // Shop layout CSS
     if (is_shop() || is_product_category() || is_product_tag()) {
         wp_enqueue_style('wc-theme-shop-css', get_template_directory_uri() . '/assets/css/shop-layout.css', array(), '1.0.0');
     }
-	
-	if (is_cart()) {
-        wp_enqueue_style('wc-theme-cart-css', get_template_directory_uri() . '/assets/css/cart.css', array(), '1.0.0');
-    }
-	
-    // Scripts
+    
+    // Scripts - подключаем jQuery первым
+    wp_enqueue_script('jquery');
+    
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true);
-    wp_enqueue_script('wc-theme-main', get_template_directory_uri() . '/assets/js/main.js', array('swiper-js'), '1.0.0', true);
-	wp_enqueue_script('wc-theme-mini-cart', get_template_directory_uri() . '/assets/js/mini-cart.js', array('swiper-js'), '1.0.0', true);
+    wp_enqueue_script('wc-theme-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'swiper-js'), '1.0.0', true);
     
-    // Локализация для основного скрипта
-    wp_localize_script('wc-theme-main', 'wc_ajax', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('wc_ajax_nonce'),
-    ));
     
-    // Shop AJAX script (добавляем только на страницах каталога)
+    
+    // Подключаем mini-cart.js после локализации
+    //wp_enqueue_script('wc-theme-mini-cart', get_template_directory_uri() . '/assets/js/mini-cart.js', array('jquery', 'wc-theme-main'), '1.0.0', true);
+    
+    // Shop AJAX script
     if (is_shop() || is_product_category() || is_product_tag()) {
-        wp_enqueue_script('wc-theme-shop-js', get_template_directory_uri() . '/assets/js/shop-ajax.js', array('jquery'), '1.0.0', true);
         
-        // Локализация для shop скрипта
-        wp_localize_script('wc-theme-shop-js', 'my_ajax', array(
+        /*wp_localize_script('wc-theme-shop-js', 'my_ajax', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('wc_ajax_nonce') 
         ));
+
+        wp_enqueue_script('wc-theme-shop-js', get_template_directory_uri() . '/assets/js/shop-ajax.js', array('jquery'), '1.0.0', true);*/
     }
 }
 add_action('wp_enqueue_scripts', 'wc_theme_scripts');
@@ -111,3 +106,26 @@ require_once get_template_directory() . '/inc/woocommerce-filters.php';
 require_once get_template_directory() . '/inc/woocommerce-ajax_products_load.php';
 require_once get_template_directory() . '/inc/woocommerce-product-functions.php';
 require_once get_template_directory() . '/inc/woocommerce-mini-cart.php';
+
+// Добавьте в конец functions.php для отладки
+/*add_action('wp_footer', function() {
+    if (is_product()) {
+        ?>
+        <script>
+        // Добавляем глобальную переменную для отладки
+        window.wc_debug = true;
+        
+        // Перехватываем AJAX запросы для отладки
+        $(document).ajaxError(function(event, jqXHR, settings, error) {
+            console.error('AJAX Error Details:', {
+                url: settings.url,
+                data: settings.data,
+                status: jqXHR.status,
+                statusText: jqXHR.statusText,
+                responseText: jqXHR.responseText
+            });
+        });
+        </script>
+        <?php
+    }
+});*/
