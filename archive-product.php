@@ -1,13 +1,16 @@
 <?php
 /**
- * Shop page template
+ * Shop page template with AJAX filters
+ * Сервер рендерит начальную страницу, AJAX подгружает при фильтрации
  */
 
 get_header();
 
-// Include theme options
-require_once get_template_directory() . '/inc/theme-options.php';
-require_once get_template_directory() . '/inc/woocommerce-filters.php';
+// Подключаем модуль
+if (file_exists(get_template_directory() . '/inc/wc-ajax-module/wc-ajax-module.php')) {
+    require_once get_template_directory() . '/inc/wc-ajax-module/wc-ajax-module.php';
+    $wc_module = WC_Ajax_Module::get_instance();
+}
 ?>
 
 <div class="container shop-container">
@@ -23,19 +26,28 @@ require_once get_template_directory() . '/inc/woocommerce-filters.php';
     
     <div class="shop-layout">
         <!-- Filters Sidebar -->
-        <?php wc_theme_display_filters(); ?>
+        <?php 
+        if (isset($wc_module) && function_exists('wc_ajax_module_init')) {
+            $wc_module->display_filters();
+        } else {
+            // Fallback на старые функции если модуль не загружен
+            if (function_exists('wc_theme_display_filters')) {
+                wc_theme_display_filters();
+            }
+        }
+        ?>
         
         <!-- Products Main Content -->
         <div class="shop-content" id="shop-content">
             <?php
-            // Display sorting and results count
+            // Display sorting and results count (стандартный WooCommerce)
             do_action('woocommerce_before_shop_loop');
             ?>
             
             <div class="products-grid" id="products-grid">
                 <?php
                 if (woocommerce_product_loop() && have_posts()):
-                    // Start product loop without ul wrapper
+                    // Стандартный серверный рендер начальных товаров
                     while (have_posts()): the_post();
                         wc_get_template_part('content', 'product');
                     endwhile;
@@ -47,7 +59,7 @@ require_once get_template_directory() . '/inc/woocommerce-filters.php';
             
             <div class="pagination-wrapper" id="pagination-wrapper">
                 <?php 
-                // Custom pagination with numbers
+                // Стандартная пагинация для начальной загрузки
                 global $wp_query;
                 $big = 999999999;
                 $pages = paginate_links(array(

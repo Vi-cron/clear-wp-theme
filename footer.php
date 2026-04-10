@@ -22,11 +22,18 @@
             
             <div class="footer-widget">
                 <h3>Контакты</h3>
-                <ul>
-                    <li>Телефон: +7(8422) 53-54-41</li>
-                    <li>Телефон: +7(8422) 53-53-27</li>
-                    <li>Email: info@example.com</li>
-                </ul>
+                <?
+                $phones = wc_theme_get_phones();
+                if (!empty($phones)) {
+                    echo '<ul>';
+                    foreach ($phones as $phone) {
+                    // Очищаем номер для ссылки tel:
+                    $clean_phone = preg_replace('/[^0-9+]/', '', trim($phone));
+                    echo '<li><a href="tel:' . esc_attr($clean_phone) . '">' . esc_html(trim($phone)) . '</a></li>';
+                }
+                echo '</ul>';
+                }
+                ?>
             </div>
             
             <div class="footer-widget">

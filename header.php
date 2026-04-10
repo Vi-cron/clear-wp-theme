@@ -15,13 +15,16 @@
         <div class="container">
             <!-- Logo -->
             <div class="logo">
-                <?php if (has_custom_logo()): ?>
-                    <?php the_custom_logo(); ?>
-                <?php else: ?>
-                    <a href="<?php echo home_url(); ?>">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.jpg" alt="<?php bloginfo('name'); ?>" width="150" height="80">
-                    </a>
-                <?php endif; ?>
+                
+                <?php 
+                $logo_url = wc_theme_get_logo();
+                if ($logo_url) {
+                    echo '<a href="'. home_url().'"><img src="' . esc_url($logo_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '"/></a>';
+                } else {
+                    // Резервный текст или логотип по умолчанию
+                    bloginfo('name');
+                }
+                ?>
             </div>
             
             <!-- Category Icons -->
@@ -31,12 +34,20 @@
             
             <!-- Header Right -->
             <div class="header-right">
-                <div class="phones">
-					<span class="icon icon-phone">📞</span>
-                    <a href="tel:+71111111111">+7(1111) 11-11-11</a>
-                    <a href="tel:+71111111111">+7(1111) 11-11-11</a>
-                </div>
-                
+
+            <?php 
+            $phones = wc_theme_get_phones();
+            if (!empty($phones)) {
+                echo '<div class="phones"><span class="icon icon-phone">📞</span>';
+                foreach ($phones as $phone) {
+                // Очищаем номер для ссылки tel:
+                $clean_phone = preg_replace('/[^0-9+]/', '', trim($phone));
+                echo '<a href="tel:' . esc_attr($clean_phone) . '">' . esc_html(trim($phone)) . '</a>';
+                }
+                echo '</div>';
+            }
+
+            if (wc_theme_is_button_enabled('wishlist')):?>
                 <a href="<?php echo home_url('/wishlist/'); ?>" class="wishlist-link">
                     <span class="icon icon-heart">❤️</span>
                     <span class="wishlist-count">
@@ -49,7 +60,9 @@
                         ?>
                     </span>
                 </a>
-                
+            <?endif;
+            
+            if (wc_theme_is_button_enabled('cart')):?>
                 <a href="<?php echo wc_get_cart_url(); ?>" class="cart-link">
                     <span class="icon icon-cart">🛒</span>
                     <span class="cart-count">
@@ -62,6 +75,8 @@
                         ?>
                     </span>
                 </a>
+            <?endif?>
+                
             </div>
         </div>
     </div>

@@ -353,6 +353,15 @@ body {
     padding-top: 100%;
 }
 
+.product-image > a{
+    text-decoration: none;
+    color:#fff;
+    /*display: inline-block;
+    min-width: 200px;
+    min-height: 200px;
+    background: #fff;*/
+}
+
 .product-image img {
     position: absolute;
     top: 0;
@@ -680,4 +689,8 @@ body {
         width: 45px;
         height: 45px;
     }
+}
+
+.w100{
+    width: 100%;
 }

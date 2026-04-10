@@ -232,18 +232,24 @@ function wc_theme_cart_buttons($product) {
     </div>
 
     <div class="cart-buttons-row">
+        <?if (wc_theme_is_button_enabled('cart')):?>
         <button type="submit" class="add-to-cart-btn single-add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
             <span class="icon icon-cart">🛒</span>
             Добавить в корзину
         </button>
-        
+        <?php endif; ?>
+
+        <?if (wc_theme_is_button_enabled('wishlist')):?>
         <button type="button" class="single-wishlist-btn-icon" data-product-id="<?php echo $product->get_id(); ?>">
             <span class="icon icon-heart">❤</span>
         </button>
+        <?php endif; ?>
 
+        <?if (wc_theme_is_button_enabled('compare')):?>
         <button type="button" class="single-comparison-btn-icon" data-product-id="<?php echo $product->get_id(); ?>">
             <span class="icon icon-comparison">⇄</span>
         </button>
+        <?php endif; ?>
         
     </div>
     <?php
@@ -311,39 +317,7 @@ function wc_theme_related_products($product) {
                         if (!$related_product) continue;
                     ?>
                         <div class="swiper-slide">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <a href="<?php the_permalink(); ?>">
-                                        <?php echo woocommerce_get_product_thumbnail('medium'); ?>
-                                    </a>
-                                    <?php if ($related_product->is_on_sale()){
-                                        $sale_percentage = wc_theme_get_sale_percentage($related_product);
-                                        if ($sale_percentage) 
-                                            echo '<span class="sale-badge">-'.$sale_percentage.'%</span>';
-                                    } 
-                                    ?>
-                                    <button class="wishlist-btn" data-product-id="<?php echo get_the_ID(); ?>">
-                                        <span class="icon icon-heart"></span>
-                                    </button>
-                                </div>
-                                <div class="product-info">
-                                    <h3 class="product-title">
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h3>
-                                    <div class="product-price">
-                                        <?php echo $related_product->get_price_html(); ?>
-                                    </div>
-                                </div>
-                                <div class="product-info-buttons">
-                                    <a class="product-info-button" href="<?php the_permalink(); ?>">
-                                        Подробнее
-                                    </a>
-                                    <button class="product-info-button add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
-                                        В корзину
-                                        <span class="icon icon-cart">🛒</span>
-                                    </button>
-                                </div>
-                            </div>
+						<?wc_get_template_part('content', 'product');?>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -355,20 +329,4 @@ function wc_theme_related_products($product) {
     </div>
     <?php
     wp_reset_postdata();
-}
-
-/**
- * Получить процент скидки
- */
-function wc_theme_get_sale_percentage($product) {
-    if (!$product->is_on_sale()) return '';
-    
-    $regular_price = $product->get_regular_price();
-    $sale_price = $product->get_sale_price();
-    
-    if ($regular_price > 0 && $sale_price > 0) {
-        $percentage = round(100 - ($sale_price / $regular_price * 100));
-        return $percentage;
-    }
-    return '';
 }

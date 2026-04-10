@@ -223,7 +223,6 @@
 .product-variations {
     margin-bottom: 25px;
     padding: 20px 0;
-    border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
 
@@ -317,7 +316,7 @@
     padding: 10px;
     background: #ffebee;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /* ============================================
@@ -402,13 +401,15 @@
 	background: #f97705;
 	color: #fff;
 	border: none;
-	padding: 15px 55px 15px 20px;
+	padding: 15px 55px 15px 15px;
 	border-radius: 5px;
 	font-size: 16px;
 	font-weight: bold;
 	cursor: pointer;
 	transition: background 0.3s ease;
 	flex: 1;
+    min-height: 60px;
+    max-width: 240px;
 }
 
 .single-add-to-cart-btn:hover {

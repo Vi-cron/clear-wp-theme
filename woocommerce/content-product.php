@@ -17,14 +17,25 @@ if (empty($product) || !$product->is_visible()) {
         <?php if ($product->is_on_sale()): ?>
             <span class="sale-badge"><?php echo esc_html__('Sale', 'woocommerce'); ?></span>
         <?php endif; ?>
+        <?
+        $compare_btn_enabled=wc_theme_is_button_enabled('compare');
+        $wishlist_btn_enabled=wc_theme_is_button_enabled('wishlist');
+
+        if ($compare_btn_enabled||$wishlist_btn_enabled):?>
         <div class="top-buttons">
+        <?if ($compare_btn_enabled):?>
         <button class="comparison-btn" data-product-id="<?php echo get_the_ID(); ?>">
             <span class="icon icon-comparison">⇄</span>
         </button>
+        <?php endif; ?>
+        <?if ($wishlist_btn_enabled):?>
         <button class="wishlist-btn" data-product-id="<?php echo get_the_ID(); ?>">
             <span class="icon icon-heart">❤️</span>
         </button>
+        <?php endif; ?>
         </div>
+        <?endif;?>
+        
     </div>
     <div class="product-info">
         <h3 class="product-title">
@@ -43,12 +54,17 @@ if (empty($product) || !$product->is_visible()) {
         
     </div>
     <div class="product-info-buttons">
-        <a class="product-info-button" href="<?php the_permalink(); ?>">
+        <?
+        $cart_btn_enabled=wc_theme_is_button_enabled('cart');
+        ?>
+        <a class="product-info-button <?if (!$cart_btn_enabled) echo 'w100'?>" href="<?php the_permalink(); ?>">
             <?php echo esc_html__('Подробнее', 'wc-theme'); ?>
         </a>
+        <?if ($cart_btn_enabled):?>
         <button class="product-info-button add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">
             <?php echo esc_html__('В корзину', 'wc-theme'); ?>
             <span class="icon icon-cart">🛒</span>
         </button>
+        <?endif?>
     </div>
 </div>

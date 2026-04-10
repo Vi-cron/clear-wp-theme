@@ -37,3 +37,34 @@ function disable_emojis_tinymce( $plugins ) {
 	return array_diff( $plugins, array( 'wpemoji' ) );
 	else return array();
 }
+
+/*add_action('get_header', 'start_inline_css_removal');
+function start_inline_css_removal() {
+    ob_start('clean_inline_css');
+}
+
+function clean_inline_css($buffer) {
+    // Не применяем для админ-панели
+    if (is_admin() || (is_user_logged_in() && current_user_can('manage_options'))) {
+        return $buffer;
+    }
+    
+    // Список ID стилей для удаления
+    $style_ids = [
+        'wp-img-auto-sizes-contain-inline-css',
+        'wp-block-library-inline-css',
+        'classic-theme-styles-inline-css',
+        'global-styles-inline-css',
+        'woocommerce-inline-inline-css',
+    ];
+    
+    foreach ($style_ids as $id) {
+        $buffer = preg_replace(
+            '/<style[^>]*id=[\'"]' . preg_quote($id, '/') . '[\'"][^>]*>.*?<\/style>/s',
+            '',
+            $buffer
+        );
+    }
+    
+    return $buffer;
+}*/
